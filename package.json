@@ -1,6 +1,6 @@
 {
   "name": "string-list",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Read forwards and backwards in an array of strings",
   "main": "index.js",
   "scripts": {
