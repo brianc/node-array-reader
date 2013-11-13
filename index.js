@@ -14,6 +14,7 @@ var StringList = module.exports = function(chunks) {
 //but not including the key
 //if the key is not found, throw baby
 StringList.prototype.readTo = function(key, dirty) {
+  var offset = this.offset
   var chunk;
   var result = []
   while(chunk = this.chunks[this.offset++]) {
@@ -22,6 +23,7 @@ StringList.prototype.readTo = function(key, dirty) {
     }
     result.push(dirty ? chunk : clean(chunk))
   }
+  this.offset = offset
   return false
 }
 
