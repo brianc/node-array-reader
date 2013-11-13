@@ -42,4 +42,10 @@ describe('string-list', function() {
     var read = this.list.readTo('four score and seven years ago')
     assert.strictEqual(read, false)
   })
+
+  it('readTo no-match resets to original position', function() {
+    var read = this.list.readTo('four score and seven years ago')
+    assert.strictEqual(read, false)
+    assert.equal(this.list.current(), 'hello')
+  })
 })
