@@ -1,0 +1,25 @@
+{
+  "name": "string-list",
+  "version": "0.0.0",
+  "description": "Read forwards and backwards in an array of strings",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brianc/node-string-reader.git"
+  },
+  "keywords": [
+    "string",
+    "reader"
+  ],
+  "author": "Brian M. Carlson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brianc/node-string-reader/issues"
+  },
+  "devDependencies": {
+    "mocha": "~1.14.0"
+  }
+}
