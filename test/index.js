@@ -1,12 +1,12 @@
 var assert = require('assert')
-var StringList = require('../')
+var reader = require('../')
 
 describe('string-list', function() {
   beforeEach(function() {
-    this.list = new StringList([
-                               'hello ',
-                               '  my name     is Brian',
-                               'And\tI like to do drawings'])
+    this.list = reader([
+                       'hello ',
+                       '  my name     is Brian',
+                       'And\tI like to do drawings'])
   })
 
   it('can read current', function() {

@@ -5,7 +5,8 @@ var clean = function(str){
 
 //read an array of text chunks
 //and search for stuff in it too!!!!1
-var StringList = module.exports = function(chunks) {
+var ArrayReader = module.exports = function(chunks) {
+  if(!(this instanceof ArrayReader)) return new ArrayReader(chunks)
   this.chunks = chunks
   this.offset = 0
 }
@@ -13,7 +14,7 @@ var StringList = module.exports = function(chunks) {
 //return array of text chunks up to
 //but not including the key
 //if the key is not found, throw baby
-StringList.prototype.readTo = function(key, dirty) {
+ArrayReader.prototype.readTo = function(key, dirty) {
   var offset = this.offset
   var chunk;
   var result = []
@@ -27,22 +28,22 @@ StringList.prototype.readTo = function(key, dirty) {
   return false
 }
 
-StringList.prototype.previous = function(dirty) {
+ArrayReader.prototype.previous = function(dirty) {
   var result = this.chunks[--this.offset]
   return dirty ? result : clean(result)
 }
 
-StringList.prototype.current = function(dirty) {
+ArrayReader.prototype.current = function(dirty) {
   var result = this.chunks[this.offset]
   return dirty ? result : clean(result)
 }
 
-StringList.prototype.next = function(dirty) {
+ArrayReader.prototype.next = function(dirty) {
   var result = this.chunks[++this.offset]
   return dirty ? result : clean(result)
 }
 
 //dump a section out to the debug console
-StringList.prototype.dump = function() {
+ArrayReader.prototype.dump = function() {
   console.error(this.chunks.slice(this.offset, this.offset + 10))
 }

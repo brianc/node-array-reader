@@ -1,21 +1,21 @@
-# string-list
+# array-reader
 
-A pretty basic class to make searching forward and backward in an array of strings easier.  Pairs up nicely with [pdf-text](https://github.com/brianc/node-pdf-text) for loosely structured pdf document parsing.
+A pretty basic class to make searching forward and backward in an array easier.  Pairs up nicely with [pdf-text](https://github.com/brianc/node-pdf-text) for loosely structured pdf document parsing.
 
 
 ## install
 
 ```sh
-$ npm install string-list
+$ npm install array-reader
 ```
 
 ## use
 
 ```js
-var StringList = require('string-list')
+var reader = require('array-reader')
 
 var strangz = ['Hello', '  MY NAME IS\tBRIAN', '  AND    I LIKE TO DO DRAWINGS!']
-var list = new StringList(strangz)
+var list = reader(strangz)
 
 var dirty = true
 
@@ -39,7 +39,8 @@ Returns the current item within the reader.  If `dirty` is truthy, return withou
 Example:
 
 ```js
-var list = new StringList(['   hi!    friend '])
+var reader = require('array-reader')
+var list = reader(['   hi!    friend '])
 list.current(true) //-> '   hi!    friend '
 list.current() //-> 'hi! friend'
 ```
@@ -51,7 +52,8 @@ Advance the internal pointer to the next item in the array and then call and ret
 Example:
 
 ```js
-var list = new StringList([' hi! ', 'friend!'])
+var reader = require('array-reader')
+var list = reader([' hi! ', 'friend!'])
 list.next() //-> 'friend!'
 ```
 
@@ -61,7 +63,8 @@ Advance the internal pointer to the current item in the array and then call and 
 
 Example:
 ```js
-var list = new StringList([' hi! ', 'friend!'])
+var reader = require('array-reader')
+var list = reader([' hi! ', 'friend!'])
 list.next() //-> 'friend!'
 list.previous(true) //-> ' hi! '
 ```
@@ -75,23 +78,24 @@ Returns the collected list elements as an arary of cleaned strings.  Pass a trut
 
 Example:
 ```js
-var list = new StringList(['I    like ice cream', 'I also like sleeping', 'let\'s dance!'])
+var reader = require('array-reader')
+var list = reader(['I    like ice cream', 'I also like sleeping', 'let\'s dance!'])
 
 var result = list.readTo('i also')
 console.log(result) //['I like ice cream']
 
 
-var list = new StringList(['I    like ice cream', 'I also like sleeping', 'let\'s dance!'])
+var list = reader(['I    like ice cream', 'I also like sleeping', 'let\'s dance!'])
 
 var result = list.readTo('alf')
 console.log(result) //false
 
-var list = new StringList(['I    like ice cream', 'I also like sleeping', 'let\'s dance!'])
+var list = reader(['I    like ice cream', 'I also like sleeping', 'let\'s dance!'])
 
 var result = list.readTo('i like')
 console.log(result) //[]
 
-var list = new StringList(['I    like ice cream', 'I also like sleeping ', 'let\'s dance!'])
+var list = reader(['I    like ice cream', 'I also like sleeping ', 'let\'s dance!'])
 
 var result = list.readTo('let', true)
 console.log(result) //['I     like ice cream', 'I also like sleeping ']
