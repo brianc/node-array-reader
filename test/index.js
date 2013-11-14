@@ -19,6 +19,16 @@ describe('string-list', function() {
     assert.equal(this.list.next(true), 'And\tI like to do drawings')
   })
 
+  it('can reset', function() {
+    assert.equal(this.list.current(), 'hello')
+    this.list.reset()
+    assert.equal(this.list.current(), 'hello')
+    this.list.next()
+    this.list.next()
+    this.list.reset()
+    assert.equal(this.list.current(), 'hello')
+  })
+
   it('can read previous', function() {
     this.list.readTo('my')
     assert.equal(this.list.previous(), 'my name is Brian')

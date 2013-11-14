@@ -43,6 +43,10 @@ ArrayReader.prototype.next = function(dirty) {
   return dirty ? result : clean(result)
 }
 
+ArrayReader.prototype.reset = function() {
+  this.offset = 0
+}
+
 //dump a section out to the debug console
 ArrayReader.prototype.dump = function() {
   console.error(this.chunks.slice(this.offset, this.offset + 10))
