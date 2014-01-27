@@ -19,7 +19,9 @@ ArrayReader.prototype.readTo = function(key, dirty) {
   var chunk;
   var result = []
   while(chunk = this.chunks[this.offset++]) {
-    if(!chunk.trim().toLowerCase().indexOf(key)) {
+    if(key instanceof RegExp && key.test(chunk)) {
+      return result
+    } else if(!chunk.trim().toLowerCase().indexOf(key)) {
       return result
     }
     result.push(dirty ? chunk : clean(chunk))

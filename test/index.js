@@ -58,4 +58,9 @@ describe('string-list', function() {
     assert.strictEqual(read, false)
     assert.equal(this.list.current(), 'hello')
   })
+
+  it('can find with regex', function() {
+    var read = this.list.readTo(/BRIAN/ig)
+    assert(read)
+  })
 })
