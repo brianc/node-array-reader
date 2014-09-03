@@ -1,6 +1,7 @@
 //clean whitespace
 var clean = function(str){
-  return str.trim().replace(/\s+/g, ' ');
+  if (!str) return str
+  return str.trim().replace(/\s+/g, ' ')
 }
 
 //read an array of text chunks
@@ -43,6 +44,11 @@ ArrayReader.prototype.current = function(dirty) {
 
 ArrayReader.prototype.next = function(dirty) {
   var result = this.chunks[++this.offset]
+  return dirty ? result : clean(result)
+}
+
+ArrayReader.prototype.peek = function(amount, dirty) {
+  var result = this.chunks[this.offset+amount]
   return dirty ? result : clean(result)
 }
 
