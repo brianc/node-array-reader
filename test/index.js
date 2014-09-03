@@ -63,4 +63,32 @@ describe('string-list', function() {
     var read = this.list.readTo(/BRIAN/ig)
     assert(read)
   })
+
+  it('can peek ahead', function() {
+    var read = this.list.peek(1)
+    var readDirty = this.list.peek(1, true)
+
+    assert.equal(this.list.current(), 'hello')
+    assert.equal(read, 'my name is Brian')
+    assert.equal(readDirty, '  my name     is Brian')
+  })
+
+  it('can peek behind', function() {
+    this.list.next()
+    var read = this.list.peek(-1)
+    var readDirty = this.list.peek(-1, true)
+
+    assert.equal(this.list.current(), 'my name is Brian')
+    assert.equal(read, 'hello')
+    assert.equal(readDirty, 'hello ')
+  })
+
+  it('peeks out of bounds gracefully', function() {
+    var read = this.list.peek(1000)
+    var readDirty = this.list.peek(-1000, true)
+
+    assert.equal(this.list.current(), 'hello')
+    assert.equal(read, undefined)
+    assert.equal(readDirty, undefined)
+  })
 })
